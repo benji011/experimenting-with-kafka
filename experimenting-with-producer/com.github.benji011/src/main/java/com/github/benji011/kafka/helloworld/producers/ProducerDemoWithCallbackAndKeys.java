@@ -1,4 +1,4 @@
-package com.github.benji011.kafka.helloworld;
+package com.github.benji011.kafka.helloworld.producers;
 
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -6,16 +6,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
+import static com.github.benji011.kafka.helloworld.constants.Constants.BOOTSTRAP_SERVER;
+import static com.github.benji011.kafka.helloworld.constants.Constants.TOPIC;
 
-public class ProducerDemoWithCallback {
+public class ProducerDemoWithCallbackAndKeys {
     public static void main(String[] args) {
 
-        Logger logger = LoggerFactory.getLogger(ProducerDemoWithCallback.class);
-        String bootstrapServers = "127.0.0.1:9092";
+        Logger logger = LoggerFactory.getLogger(ProducerDemoWithCallbackAndKeys.class);
 
         // Create producer properties
         Properties properties = new Properties();
-        properties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        properties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVER);
         properties.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 
@@ -24,7 +25,9 @@ public class ProducerDemoWithCallback {
 
         // Create producer record
         for (int i = 0; i <=10; i++) {
-            ProducerRecord<String, String> record = new ProducerRecord<String, String>("hello_world_topic_partitioned_3", "hello world " + Integer.toString(i));
+            String key = "record_id_" + Integer.toString(i);
+            String value = "hello world from producer " + Integer.toString(i);
+            ProducerRecord<String, String> record = new ProducerRecord<String, String>(TOPIC, key, value);
 
             // Send data with callback to execute everytime a record is sent successfully
             producer.send(record, new Callback() {
@@ -37,7 +40,8 @@ public class ProducerDemoWithCallback {
                                 + "Topic: " + recordMetadata.topic()  + "\n"
                                 + "Partition: " + recordMetadata.partition() + "\n"
                                 + "Offset: " + recordMetadata.offset() + "\n"
-                                + "Timestamp: " + recordMetadata.timestamp()
+                                + "Timestamp: " + recordMetadata.timestamp() + "\n"
+                                + "Key: " + key
                         );
                     }
                 }

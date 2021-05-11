@@ -10,7 +10,7 @@ Run a consumer in a separate terminal:
 ```
 
 ### Step 2
-Running the [producer file](./ProducerDemoWithCallback.java):
+Running the [producer file](ProducerDemoWithCallback.java):
 
 ```bash
 [main] INFO org.apache.kafka.clients.producer.ProducerConfig - ProducerConfig values: 
