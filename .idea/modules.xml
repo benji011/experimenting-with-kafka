@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/IdeaProjects.iml" filepath="$PROJECT_DIR$/.idea/IdeaProjects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/experimenting-with-consumer-producers/com.github.benji011/com.github.benji011.iml" filepath="$PROJECT_DIR$/experimenting-with-consumer-producers/com.github.benji011/com.github.benji011.iml" />
+      <module fileurl="file://$PROJECT_DIR$/experimenting-with-consumer-groups/experimenting-with-consumer-group.iml" filepath="$PROJECT_DIR$/experimenting-with-consumer-groups/experimenting-with-consumer-group.iml" />
     </modules>
   </component>
 </project>
